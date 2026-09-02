@@ -1,0 +1,455 @@
+================================================================================
+ULTIMATE NEXUS ENGINE - KERNEL SYSTEM LOG
+WAKTU KUNCI: 2026-09-02 04:03:01
+PRINSIP: SILIH ASIH - SILIH ASAH - WALUYA
+================================================================================
+
+[MODUL CHROME OTOMATIS AKTIF]
+- Target URL: https://www.google.com
+- Status: Berhasil diakses ku Kernel Nexus.
+
+=== 1. HASIL ANALISIS ===
+Berikut adalah ringkasan praktis mengenai Otomatisasi Sistem Karyawan AI, dengan fokus pada manfaat inti, area aplikasi, dan pertimbangan penting dari sudut pandang bisnis:
+
+---
+
+**Ringkasan Praktis: Otomatisasi Sistem Karyawan AI**
+
+**Pendahuluan:**
+Otomatisasi Sistem Karyawan AI (Artificial Intelligence) adalah penerapan teknologi AI untuk mengotomatisasi, menyederhanakan, dan meningkatkan berbagai proses dan fungsi manajemen sumber daya manusia (HR) dalam suatu organisasi. Tujuannya adalah untuk meningkatkan efisiensi operasional, pengalaman karyawan, dan memungkinkan tim HR untuk fokus pada inisiatif yang lebih strategis.
+
+**Manfaat Utama:**
+
+1.  **Peningkatan Efisiensi Operasional:**
+    *   **Mengurangi Beban Administratif:** Otomatisasi tugas-tugas rutin seperti penyaringan resume, penjadwalan wawancara, pemrosesan permintaan cuti, dan entri data.
+    *   **Kecepatan & Akurasi:** Mempercepat proses HR dan meminimalkan kesalahan manusia, dari onboarding hingga pemrosesan penggajian.
+
+2.  **Pengalaman Karyawan yang Lebih Baik:**
+    *   **Dukungan 24/7:** Chatbot AI dapat memberikan jawaban instan untuk pertanyaan umum karyawan (kebijakan, manfaat, dll.), meningkatkan kepuasan.
+    *   **Personalisasi:** AI dapat merekomendasikan jalur pembelajaran, peluang pengembangan, atau informasi yang relevan secara individual.
+    *   **Self-Service yang Ditingkatkan:** Karyawan dapat mengelola informasi mereka sendiri dengan lebih mudah dan cepat.
+
+3.  **Pengurangan Biaya:**
+    *   Mengurangi kebutuhan akan staf administrasi HR yang besar untuk tugas-tugas rutin.
+    *   Meminimalkan biaya yang terkait dengan kesalahan atau keterlambatan proses HR.
+
+4.  **Wawasan Berbasis Data:**
+    *   **Analisis Prediktif:** AI dapat menganalisis data karyawan untuk memprediksi risiko turnover, mengidentifikasi kesenjangan keterampilan, atau memahami sentimen karyawan.
+    *   **Pengambilan Keputusan yang Lebih Baik:** Memberikan HR dan manajemen data yang actionable untuk strategi tenaga kerja.
+
+5.  **Fokus HR yang Lebih Strategis:**
+    *   Membebaskan profesional HR dari tugas-tugas transaksional, memungkinkan mereka untuk fokus pada pengembangan bakat, perencanaan suksesi, budaya perusahaan, dan inisiatif strategis lainnya yang membutuhkan sentuhan manusia.
+
+**Area Aplikasi Kunci:**
+
+*   **Perekrutan & Onboarding:** Screening resume (ATS), chatbot untuk pelamar, penjadwalan otomatis, tugas pra-onboarding.
+*   **Dukungan Karyawan:** Chatbot HR untuk FAQ, pemrosesan permintaan (mis. cuti, penggantian biaya), portal swalayan.
+*   **Manajemen Kinerja & Pengembangan:** Pelacak tujuan otomatis, pengingat umpan balik, rekomendasi pelatihan yang dipersonalisasi.
+*   **Administrasi & Penggajian:** Verifikasi data, otomasi dasar penggajian, penanganan pertanyaan dasar tentang manfaat.
+*   **Analisis & Perencanaan Tenaga Kerja:** Prediksi kebutuhan staf, identifikasi tren kinerja, analisis sentimen karyawan.
+
+**Pertimbangan Penting:**
+
+*   **Privasi & Keamanan Data:** Pengelolaan data karyawan yang sangat sensitif memerlukan protokol keamanan dan kepatuhan yang ketat.
+*   **Etika & Bias AI:** Penting untuk memastikan algoritma AI tidak memiliki bias yang melekat yang dapat menyebabkan diskriminasi dalam perekrutan, promosi, atau penilaian kinerja.
+*   **Integrasi Sistem:** Kemampuan AI untuk terintegrasi dengan sistem HRIS (Human Resources Information System) yang ada sangat krusial.
+*   **Keseimbangan Interaksi Manusia:** Meskipun otomatisasi itu efisien, penting untuk tidak menghilangkan sentuhan manusia sepenuhnya, terutama untuk masalah-masalah kompleks atau sensitif.
+*   **Pelatihan & Adopsi:** Karyawan dan tim HR perlu dilatih untuk menggunakan sistem baru secara efektif.
+
+**Kesimpulan:**
+Otomatisasi Sistem Karyawan AI bukan hanya tentang mengganti pekerjaan manusia, melainkan tentang memberdayakan HR dan karyawan. Ini adalah alat transformatif yang, bila diterapkan dengan bijak, dapat menciptakan organisasi yang lebih efisien, responsif, berwawasan, dan pada akhirnya, lebih berpusat pada karyawan. Investasi dalam AI di bidang HR harus dilihat sebagai langkah strategis untuk masa depan manajemen sumber daya manusia.
+
+=== 2. ARSITEKTUR KODING ===
+```python
+import uuid
+import random
+import datetime
+
+class Employee:
+    def __init__(self, name, role, skills, availability="Available", performance_score=5):
+        self.employee_id = str(uuid.uuid4())
+        self.name = name
+        self.role = role
+        self.skills = set(skills)
+        self.availability = availability
+        self.performance_score = performance_score
+        self.assigned_tasks = []
+
+    def __str__(self):
+        return (f"ID: {self.employee_id[:8]}..., Name: {self.name}, Role: {self.role}, "
+                f"Skills: {', '.join(self.skills)}, Availability: {self.availability}, "
+                f"Performance: {self.performance_score}/10, Active Tasks: {len(self.assigned_tasks)}")
+
+    def update_performance(self, change):
+        self.performance_score = max(1, min(10, self.performance_score + change))
+
+class Task:
+    def __init__(self, description, required_skills, priority="Medium"):
+        self.task_id = str(uuid.uuid4())
+        self.description = description
+        self.required_skills = set(required_skills)
+        self.priority = priority
+        self.status = "Pending"
+        self.assigned_to = None
+
+    def __str__(self):
+        assigned_name = self.assigned_to.name if self.assigned_to else "Unassigned"
+        return (f"Task ID: {self.task_id[:8]}..., Desc: {self.description}, "
+                f"Skills: {', '.join(self.required_skills)}, Priority: {self.priority}, "
+                f"Status: {self.status}, Assigned To: {assigned_name}")
+
+class AIEmpSystem:
+    def __init__(self):
+        self.employees = {}
+        self.tasks = {}
+
+    def add_employee(self, name, role, skills_str, availability="Available", performance_score=5):
+        skills = {s.strip() for s in skills_str.split(',') if s.strip()}
+        employee = Employee(name, role, skills, availability, performance_score)
+        self.employees[employee.employee_id] = employee
+        print(f"Employee '{name}' added with ID: {employee.employee_id[:8]}...")
+        return employee.employee_id
+
+    def view_employees(self):
+        if not self.employees:
+            print("No employees registered.")
+            return
+        print("\n--- Current Employees ---")
+        for emp_id, employee in self.employees.items():
+            print(employee)
+        print("-------------------------")
+
+    def find_employee(self, employee_id_prefix):
+        for emp_id, employee in self.employees.items():
+            if emp_id.startswith(employee_id_prefix):
+                return employee
+        return None
+
+    def update_employee(self, employee_id_prefix, new_data):
+        employee = self.find_employee(employee_id_prefix)
+        if not employee:
+            print(f"Employee with ID prefix '{employee_id_prefix}' not found.")
+            return False
+
+        for key, value in new_data.items():
+            if hasattr(employee, key):
+                if key == "skills":
+                    setattr(employee, key, {s.strip() for s in value.split(',') if s.strip()})
+                elif key == "performance_score":
+                    try:
+                        setattr(employee, key, int(value))
+                    except ValueError:
+                        print(f"Invalid performance_score value: {value}. Must be an integer.")
+                        continue
+                else:
+                    setattr(employee, key, value)
+                print(f"Updated '{key}' for employee '{employee.name}'.")
+            else:
+                print(f"Warning: Attribute '{key}' not found for Employee.")
+        return True
+
+    def delete_employee(self, employee_id_prefix):
+        employee = self.find_employee(employee_id_prefix)
+        if employee:
+            del self.employees[employee.employee_id]
+            print(f"Employee '{employee.name}' (ID: {employee.employee_id[:8]}...) deleted.")
+            for task_id, task in self.tasks.items():
+                if task.assigned_to and task.assigned_to.employee_id == employee.employee_id:
+                    task.assigned_to = None
+                    task.status = "Pending"
+                    print(f"Task '{task.description}' unassigned due to employee deletion.")
+            return True
+        print(f"Employee with ID prefix '{employee_id_prefix}' not found.")
+        return False
+
+    def add_task(self, description, required_skills_str, priority="Medium"):
+        required_skills = {s.strip() for s in required_skills_str.split(',') if s.strip()}
+        task = Task(description, required_skills, priority)
+        self.tasks[task.task_id] = task
+        print(f"Task '{description}' added with ID: {task.task_id[:8]}...")
+        return task.task_id
+
+    def view_tasks(self):
+        if not self.tasks:
+            print("No tasks registered.")
+            return
+        print("\n--- Current Tasks ---")
+        for task_id, task in self.tasks.items():
+            print(task)
+        print("---------------------")
+
+    def find_task(self, task_id_prefix):
+        for t_id, task in self.tasks.items():
+            if t_id.startswith(task_id_prefix):
+                return task
+        return None
+
+    def update_task_status(self, task_id_prefix, new_status):
+        task = self.find_task(task_id_prefix)
+        if not task:
+            print(f"Task with ID prefix '{task_id_prefix}' not found.")
+            return False
+        
+        valid_statuses = {"Pending", "Assigned", "In Progress", "Completed", "Canceled"}
+        if new_status not in valid_statuses:
+            print(f"Invalid status '{new_status}'. Valid statuses: {', '.join(valid_statuses)}")
+            return False
+
+        current_assigned_employee = task.assigned_to
+        
+        task.status = new_status
+        if new_status in {"Completed", "Canceled", "Pending"}:
+            if current_assigned_employee:
+                if new_status == "Completed":
+                    current_assigned_employee.update_performance(1)
+                    print(f"Task '{task.description}' completed. Performance of '{current_assigned_employee.name}' increased.")
+                elif new_status == "Canceled":
+                    print(f"Task '{task.description}' canceled. '{current_assigned_employee.name}' freed up.")
+                
+                if task in current_assigned_employee.assigned_tasks:
+                    current_assigned_employee.assigned_tasks.remove(task)
+                
+                if not current_assigned_employee.assigned_tasks and current_assigned_employee.availability != "On Leave":
+                    current_assigned_employee.availability = "Available"
+                    print(f"Employee '{current_assigned_employee.name}' is now 'Available'.")
+            task.assigned_to = None
+        
+        print(f"Task '{task.description}' status updated to '{new_status}'.")
+        return True
+
+    def assign_task_automatically(self, task_id_prefix):
+        task = self.find_task(task_id_prefix)
+        if not task:
+            print(f"Task with ID prefix '{task_id_prefix}' not found for automatic assignment.")
+            return False
+        
+        if task.status != "Pending":
+            print(f"Task '{task.description}' is already {task.status}. Cannot auto-assign.")
+            return False
+
+        eligible_employees = []
+        for emp_id, employee in self.employees.items():
+            if employee.availability == "Available" and task.required_skills.issubset(employee.skills):
+                eligible_employees.append(employee)
+        
+        if not eligible_employees:
+            print(f"No available employees found with required skills for task '{task.description}'.")
+            return False
+
+        eligible_employees.sort(key=lambda emp: (len(emp.assigned_tasks), -emp.performance_score))
+        
+        best_employee = eligible_employees[0]
+
+        task.assigned_to = best_employee
+        task.status = "Assigned"
+        best_employee.assigned_tasks.append(task)
+        best_employee.availability = "Busy"
+        print(f"Task '{task.description}' automatically assigned to '{best_employee.name}' (ID: {best_employee.employee_id[:8]}...).")
+        return True
+
+    def generate_performance_report(self):
+        if not self.employees:
+            print("No employees to generate a report for.")
+            return
+
+        print("\n--- Employee Performance Report ---")
+        for emp_id, employee in self.employees.items():
+            status_text = f"Currently assigned {len(employee.assigned_tasks)} tasks." if employee.assigned_tasks else "No active tasks."
+            print(f"Employee: {employee.name} (ID: {employee.employee_id[:8]}...)")
+            print(f"  Role: {employee.role}")
+            print(f"  Performance Score: {employee.performance_score}/10")
+            print(f"  Availability: {employee.availability}")
+            print(f"  {status_text}")
+            self.recommend_action_for_employee(employee.employee_id)
+            print("-" * 30)
+        print("-----------------------------------")
+
+    def recommend_action_for_employee(self, employee_id_full):
+        employee = self.employees.get(employee_id_full)
+        if not employee:
+            return
+
+        if employee.performance_score < 4:
+            print("  Recommendation: Provide mandatory training on core skills.")
+        elif employee.performance_score < 7:
+            print("  Recommendation: Offer optional advanced skill training or mentorship.")
+        else:
+            print("  Recommendation: Consider for leadership roles or complex projects.")
+        
+        if not employee.assigned_tasks and employee.availability == "Available":
+            print("  Recommendation: This employee is available and has no tasks. Look for new assignments.")
+
+    def chatbot_query(self, query):
+        query = query.lower()
+        if "hello" in query or "hi" in query:
+            return "Hello! How can I assist you with employee and task management today?"
+        
+        if "employees" in query or "staff" in query:
+            if self.employees:
+                return f"We currently have {len(self.employees)} employees. You can use 'view employees' to see them all."
+            return "There are no employees registered yet."
+        
+        if "tasks" in query or "work" in query:
+            if self.tasks:
+                pending_tasks = sum(1 for t in self.tasks.values() if t.status == "Pending")
+                assigned_tasks = sum(1 for t in self.tasks.values() if t.status in {"Assigned", "In Progress"})
+                return (f"There are {len(self.tasks)} tasks in total. "
+                        f"{pending_tasks} are pending, {assigned_tasks} are in progress/assigned.")
+            return "There are no tasks registered yet."
+            
+        if "performance" in query:
+            return "I can generate a performance report for all employees. Type 'report performance'."
+
+        if "assign task" in query or "automate task" in query:
+            return "I can automatically assign a pending task to the most suitable employee based on skills and availability. Use 'assign task auto <task_id_prefix>'."
+        
+        if "thank" in query or "bye" in query:
+            return "You're welcome! Goodbye!"
+
+        return "I'm a simple AI for employee system automation. I can help with employee/task management and assignments. Try asking about 'employees', 'tasks', 'performance', or 'assign task'."
+
+
+def run_ai_emp_system():
+    system = AIEmpSystem()
+
+    print("--- AI Employee System Automation ---")
+    print("Type 'help' for commands, 'exit' to quit.")
+
+    system.add_employee("Alice Smith", "Software Engineer", "Python, AWS, SQL", "Available", 8)
+    system.add_employee("Bob Johnson", "Project Manager", "Agile, Scrum, Communication", "Available", 7)
+    system.add_employee("Charlie Brown", "DevOps Engineer", "Linux, Docker, Kubernetes", "Available", 9)
+    system.add_employee("Diana Prince", "Software Engineer", "Java, Spring, Microservices", "Busy", 6)
+    system.add_employee("Eve Adams", "QA Engineer", "Manual Testing, Automation, Selenium", "Available", 5)
+
+    system.add_task("Develop authentication module", "Python, AWS", "High")
+    system.add_task("Prepare sprint report", "Agile, Communication", "Medium")
+    system.add_task("Set up CI/CD pipeline", "Docker, Kubernetes, AWS", "High")
+    system.add_task("Test new user stories", "Manual Testing", "Medium")
+    system.add_task("Refactor legacy code", "Python, SQL", "Low")
+    system.add_task("Database optimization", "SQL", "High")
+
+
+    while True:
+        try:
+            command_line = input("\nAI-Emp-System> ").strip()
+            if not command_line:
+                continue
+
+            command_parts = command_line.split(maxsplit=1)
+            action = command_parts[0].lower()
+            args = command_parts[1] if len(command_parts) > 1 else ""
+
+            if action == "exit":
+                print("Exiting AI Employee System. Goodbye!")
+                break
+            elif action == "help":
+                print("\n--- Commands ---")
+                print("add employee <name>, <role>, <skills_csv> [,<availability>] [,<performance_score>]")
+                print("view employees")
+                print("update employee <id_prefix> <attribute>=<value> [<attribute>=<value>...]")
+                print("delete employee <id_prefix>")
+                print("add task <description>, <skills_csv> [,<priority>]")
+                print("view tasks")
+                print("update task <id_prefix> status=<new_status>")
+                print("assign task auto <id_prefix>")
+                print("report performance")
+                print("chat <your_question>")
+                print("help")
+                print("exit")
+                print("----------------")
+            
+            elif action == "add":
+                if args.startswith("employee"):
+                    parts = [p.strip() for p in args[len("employee"):].strip().split(',')]
+                    if len(parts) >= 3:
+                        system.add_employee(*parts)
+                    else:
+                        print("Usage: add employee <name>, <role>, <skills_csv> [,<availability>] [,<performance_score>]")
+                elif args.startswith("task"):
+                    parts = [p.strip() for p in args[len("task"):].strip().split(',')]
+                    if len(parts) >= 2:
+                        system.add_task(*parts)
+                    else:
+                        print("Usage: add task <description>, <skills_csv> [,<priority>]")
+                else:
+                    print("Unknown 'add' command. Try 'add employee' or 'add task'.")
+            
+            elif action == "view":
+                if args == "employees":
+                    system.view_employees()
+                elif args == "tasks":
+                    system.view_tasks()
+                else:
+                    print("Unknown 'view' command. Try 'view employees' or 'view tasks'.")
+            
+            elif action == "update":
+                sub_action_parts = args.split(maxsplit=1)
+                if len(sub_action_parts) < 2:
+                    print("Usage: update <entity> <id_prefix> <attribute>=<value> [...]")
+                    continue
+                entity_type = sub_action_parts[0]
+                
+                update_cmd_parts = sub_action_parts[1].split(maxsplit=1)
+                if len(update_cmd_parts) < 2:
+                    print("Usage: update <entity> <id_prefix> <attribute>=<value> [...]")
+                    continue
+                entity_id_prefix = update_cmd_parts[0]
+                update_str = update_cmd_parts[1]
+
+                new_data = {}
+                for item in update_str.split():
+                    if '=' in item:
+                        k, v = item.split('=', 1)
+                        new_data[k] = v
+                    else:
+                        print(f"Invalid update format: '{item}'. Use 'attribute=value'.")
+                        new_data = None
+                        break
+                
+                if new_data is None:
+                    continue
+
+                if entity_type == "employee":
+                    system.update_employee(entity_id_prefix, new_data)
+                elif entity_type == "task":
+                    if 'status' in new_data:
+                        system.update_task_status(entity_id_prefix, new_data['status'])
+                    else:
+                        print("Only 'status' can be updated for tasks using this command. Use 'update task <id_prefix> status=<new_status>'.")
+                else:
+                    print("Unknown entity type for update. Try 'employee' or 'task'.")
+
+            elif action == "delete":
+                if args.startswith("employee"):
+                    emp_id_prefix = args[len("employee"):].strip()
+                    system.delete_employee(emp_id_prefix)
+                else:
+                    print("Unknown 'delete' command. Try 'delete employee <id_prefix>'.")
+            
+            elif action == "assign":
+                if args.startswith("task auto"):
+                    task_id_prefix = args[len("task auto"):].strip()
+                    system.assign_task_automatically(task_id_prefix)
+                else:
+                    print("Unknown 'assign' command. Try 'assign task auto <id_prefix>'.")
+            
+            elif action == "report":
+                if args == "performance":
+                    system.generate_performance_report()
+                else:
+                    print("Unknown 'report' command. Try 'report performance'.")
+            
+            elif action == "chat":
+                response = system.chatbot_query(args)
+                print(f"AI-Chatbot> {response}")
+
+            else:
+                print(f"Unknown command: '{action}'. Type 'help' for available commands.")
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            print("Please check your command format or arguments.")
+
+if __name__ == "__main__":
+    run_ai_emp_system()
+```
